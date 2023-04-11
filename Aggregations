@@ -1,0 +1,69 @@
+""Módulo de agregações do Udacity""
+
+Agregações Soma
+
+1. Select Sum (poster_qty) as qtd_poster
+from orders
+ 
+2. Select Sum (standard_qty) as qtd_poster
+from orders
+
+3. Select Sum (total_amt_usd) as gasto_total
+from orders
+
+4. Select id,
+Sum (total_amt_usd) as gasto_total,
+Sum(gloss_amt_usd) as gasto_total_gloss
+from orders
+group by id
+
+5.Select
+sum(standard_amt_usd/(standard_qty+0.01)) as custo_unitario
+from orders
+
+Agregações min, max, avg
+
+1. select min(occurred_at) as pedido_velho
+from orders
+
+2. select occurred_at as pedido_velho
+from orders
+order by occurred_at 
+limit 1
+
+3. select min(occurred_at) as pedido_velho
+from web_events 
+group by channel
+limit 1
+
+4. select occurred_at as pedido_velho,
+channel
+from web_events 
+order by occurred_at desc
+limit 1
+
+5. select avg(standard_qty) as qtd_padrao,
+avg(gloss_qty) as qtd_gloss, 
+avg(poster_qty) as poster_gloss,
+avg(standard_amt_usd) as gasto_std,
+avg(gloss_amt_usd) as gasto_gloss,
+avg(poster_amt_usd) as poster_gloss
+from orders
+
+6. SELECT *
+FROM (SELECT total_amt_usd
+FROM orders
+ORDER BY total_amt_usd
+LIMIT 3457) AS Table1
+ORDER BY total_amt_usd DESC
+LIMIT 2;
+
+Group by 
+
+1.select min(orders.occurred_at) as data, 
+accounts.name as nome 
+from accounts 
+join orders 
+on accounts.id = orders.account_id
+group by accounts.name
+order by data
