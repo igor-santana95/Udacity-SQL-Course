@@ -1,0 +1,73 @@
+""Join Questions Udacity""
+1. SELECT *
+FROM accounts
+JOIN orders
+ON accounts.id = orders.id 
+
+2. SELECT 
+orders.standard_qty,
+orders.gloss_qty,
+orders.poster_qty,
+accounts.website,
+accounts.primary_poc
+FROM accounts
+JOIN orders
+ON accounts.id = orders.id 
+
+1. select occurred_at, channel, name, primary_poc
+from web_events
+join accounts
+on web_events.account_id = accounts.id
+where name = 'Walmart' order by occurred_at
+
+2. select region.name as regiao, sales_reps.name as vendedor, accounts.name as conta
+from region
+join sales_reps
+on region.id  = sales_reps.region_id  
+join accounts
+on sales_reps.id = accounts.sales_rep_id
+order by conta
+
+3. select r.name as regiao, 
+a.name as nome_conta,
+(total_amt_usd/(total+0.01)) as unit_price
+from region r
+join sales_reps s 
+on s.region_id = r.id 
+join accounts a
+on s.id = a.sales_rep_id
+join orders o
+on a.id = o.account_id
+
+1. select r.name as "regiao",
+s.name as "vendedor",
+a.name as "nome_da_conta"
+from region r 
+join sales_reps s
+on r.id = s.region_id
+join accounts a
+on s.id = a.sales_rep_id
+where r.name = 'Midwest'
+order by a.name
+
+2.select r.name as "regiao",
+s.name as "vendedor",
+a.name as "nome_da_conta"
+from region r 
+join sales_reps s
+on r.id = s.region_id
+join accounts a
+on s.id = a.sales_rep_id
+where r.name = 'Midwest' and a.name like 'S%'
+order by a.name
+
+3. select r.name as "regiao",
+s.name as "vendedor",
+a.name as "nome_da_conta"
+from region r 
+join sales_reps s
+on r.id = s.region_id
+join accounts a
+on s.id = a.sales_rep_id
+where r.name = 'Midwest' and r.name like 'K%'
+order by a.name 
